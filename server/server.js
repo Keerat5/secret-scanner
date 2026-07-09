@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import uploadRoute from "./routes/upload.js";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Recreate __dirname (ES Modules don't have it by default)
 const __filename = fileURLToPath(import.meta.url);
