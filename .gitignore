@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Uploaded files
+server/uploads/*
+
+# Keep uploads folder
+!server/uploads/.gitkeep
+
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Coverage
+coverage/

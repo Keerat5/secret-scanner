@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secret Scanner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡 Secret Scanner</h1>
+
+    <p class="subtitle">
+        Detect accidentally exposed API keys, passwords and secrets.
+    </p>
+
+    <form id="uploadForm">
+
+        <input
+            type="file"
+            id="file"
+            name="file"
+        >
+
+        <button type="submit">
+            Scan File
+        </button>
+
+    </form>
+
+    <div id="results">
+
+        <p>No scan performed.</p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
