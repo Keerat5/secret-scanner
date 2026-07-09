@@ -1,27 +1,19 @@
 import express from "express";
 import multer from "multer";
-import fs from "fs/promises";
 import patterns from "../regex/patterns.js";
 
 
 const router = express.Router(); // Create a mini router for upload-related routes
 
-const uploadDir = "uploads";
-
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-}
-
-// Configure Multer to save uploaded files in server/uploads
 const upload = multer({
-    dest: "./server/uploads/"
+    storage: multer.memoryStorage()
 });
 
 // POST /upload
 router.post("/", upload.single("file"), async (req, res) => {
 
     // Read uploaded file
-    const content = await fs.readFile(req.file.path, "utf-8");
+    const content = req.file.buffer.toString("utf8");
 
     const findings = [];
 
