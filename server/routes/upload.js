@@ -2,7 +2,16 @@ import express from "express";
 import multer from "multer";
 import fs from "fs/promises";
 import patterns from "../regex/patterns.js";
+import fs from "fs";
+
+
 const router = express.Router(); // Create a mini router for upload-related routes
+
+const uploadDir = "uploads";
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
 
 // Configure Multer to save uploaded files in server/uploads
 const upload = multer({
