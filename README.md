@@ -55,7 +55,7 @@ secret-scanner/
 ## 🚀 Installation
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Keerat5/secret-scanner
 
 cd secret-scanner
 
