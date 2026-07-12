@@ -54,3 +54,25 @@ form.addEventListener("submit", async (e) => {
     });
 
 });
+
+const repoForm = document.getElementById("repoForm");
+
+repoForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const repoUrl = document.getElementById("repoUrl").value;
+
+    const response = await fetch("/scan-repo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ repoUrl })
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+
+    // We'll render the results exactly like uploaded files
+});

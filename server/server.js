@@ -2,6 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import uploadRoute from "./routes/upload.js";
+import repoRoute from "./routes/repo.js";
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 // Recreate __dirname (ES Modules don't have it by default)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+app.use(express.json());
+
+app.use("/scan-repo", repoRoute);
 
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "../client")));
