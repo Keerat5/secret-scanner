@@ -71,8 +71,51 @@ repoForm.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
-
     console.log(data);
+    const results = document.getElementById("results");
 
-    // We'll render the results exactly like uploaded files
+    results.innerHTML = "";
+
+    if (!response.ok || !data.success) {
+        results.innerHTML = `<p class="error">${data.message || "Repository scan failed."}</p>`;
+        return;
+    }
+
+    const filesWithFindings = data.results.filter(file => file.findings.length > 0);
+
+    // No secrets found
+    if (filesWithFindings.length === 0) {
+        results.innerHTML = `<p class="success">✅ No secrets found.</p>`;
+        return;
+    }
+
+    filesWithFindings.forEach(file => {
+
+    const fileCard = document.createElement("div");
+    fileCard.className = "card";
+
+    fileCard.innerHTML = `
+        <h2>📄 ${file.file}</h2>
+        <p><strong>Path:</strong> ${file.path}</p>
+    `;
+
+    file.findings.forEach(finding => {
+
+        const findingCard = document.createElement("div");
+
+        findingCard.innerHTML = `
+            <h3>⚠ ${finding.type}</h3>
+            <p><strong>Line:</strong> ${finding.line}</p>
+            <ul>
+                ${finding.matches.map(m => `<li>${m}</li>`).join("")}
+            </ul>
+        `;
+
+        fileCard.appendChild(findingCard);
+
+    });
+
+    results.appendChild(fileCard);
+
+    });
 });

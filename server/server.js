@@ -1,9 +1,10 @@
 import express from "express";
 import path from "path";
+import "dotenv/config";
 import { fileURLToPath } from "url";
 import uploadRoute from "./routes/upload.js";
 import repoRoute from "./routes/repo.js";
-
+console.log("TOKEN:", process.env.GITHUB_TOKEN);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
